@@ -1,0 +1,12 @@
+This library updates the canvas2d ctx.measureText(<String>) function
+so that it returns not just a string's width, but also its height,
+ascent wrt the baseline, descent wrt the baseline, the leading distance
+(the number of pixels between the baselines of two consecutive lines
+of text, pronounced like the metal "lead", not like the management
+"leader"), as well as the string's bounding box.
+
+Simply include on a page as:
+
+  <script type="text/javascript" src="fontmetrics.js"></script>
+
+and measureText will return a much more complete object.
