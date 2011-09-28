@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FontMetrics test</title>
+    <script type="text/javascript" src="fontmetrics.js"></script>
+    <style type="text/css">
+    td { text-align: left; vertical-align: top; }
+    td+td { padding-left: 1em; }
+    </style>
+  </head>
+  <body>
+
+    <h2>Extended Canvas2D text metrics</h2>
+
+    <p>This page demonstrates the <a href="fontmetrics.js">fontmetrics.js</a> library,
+    which updates the canvas2d ctx.measureText(string) function so that it returns not just
+    a string's width, but also its ascent, descent, leading and bounding box metrics.</p>
+
+    <table style="width:600px; margin-right:"><tr><td>
+      Canvas "cvs" (200×200):<br>
+      <canvas id="cvs" width="200" height="200" style="border: 1px solid black;"></canvas>
+    </td><td>
+      What it should look like:<br>
+      <img src="canvas.jpg" alt="a jpeg of what the canvas should look like when rendered by the browser">
+    </td><td>
+      JavaScript:<br>
+      <pre>var canvas = document.getElementById('cvs'),
+    context = canvas.getContext("2d");
+
+var w=200, h=200, testtext="this is a string";
+canvas.style.font = "30px Times";
+context.font = "30px Times";
+var metrics = context.measureText(testtext);
+var xstart = (w - metrics.width)/2;
+context.fontFamily = "Times";
+context.fillStyle = "#99BBFF";
+context.fillRect(xstart, h/2-metrics.ascent,
+                 metrics.bounds.maxx-metrics.bounds.minx,
+                 1+metrics.bounds.maxy-metrics.bounds.miny);
+context.fillStyle = "grey";
+context.fillText(testtext, xstart, h/2);</pre>
+    </td></tr></table>
+
+    <hr>
+
+    <p>Metrics object:</p>
+    <pre id="log"></pre>
+
+    <hr>
+
+    <p>Canvas state used in fontmetrics.js for metrics computation:</p>
+    <script type="text/javascript">
+      (function(){
+        var canvas = document.getElementById('cvs'),
+            context = canvas.getContext("2d");
+
+        var w=200, h=200, testtext="this is a string";
+
+        canvas.style.font = "30px Times";
+        context.font = "30px Times";
+        
+        // draw bounding box and text
+        var metrics = context.measureText(testtext);
+        var xstart = (w - metrics.width)/2;
+        context.fontFamily = "Times";
+        context.fillStyle = "#99BBFF";
+        context.fillRect(xstart, h/2-metrics.ascent, metrics.bounds.maxx-metrics.bounds.minx, 1+metrics.bounds.maxy-metrics.bounds.miny);
+        context.fillStyle = "grey";
+        context.fillText(testtext, xstart, h/2);
+        
+        // show metrics content
+        var t = "&nbsp;&nbsp;",
+            nl = "<br>";
+        var logstring = "metrics = {"+nl;
+        logstring += t+"fontsize: " + metrics.fontsize + "px," + nl;
+        logstring += t+"width: " + metrics.width + "px," + nl;
+        logstring += t+"height: " + metrics.height+ "px,  /* ascent + 1 for the baseline + descent */" + nl;
+        logstring += t+"ascent: " + metrics.ascent + "px,  /* distance above baseline */" + nl;
+        logstring += t+"descent: " + metrics.descent + "px,  /* distance below baseline */" + nl;
+        logstring += t+"leading: " + metrics.leading + "px, /* distance between consecutive baselines */" + nl;
+        logstring += t+"bounds: { " + nl;
+        logstring += t+t+"minx: " + metrics.bounds.minx + "px,   /* can be negative */" + nl;
+        logstring += t+t+"miny: " + metrics.bounds.miny + "px,   /* can also be negative */" + nl;
+        logstring += t+t+"maxx: " + metrics.bounds.maxx + "px, /* not necessarily the same as metrics.width */" + nl;
+        logstring += t+t+"maxy: " + metrics.bounds.maxy + "px   /* not necessarily the same as metrics.height */" + nl;
+        logstring += t+"}" + nl;
+        logstring += "}";
+        document.getElementById('log').innerHTML = logstring;
+      }());
+    </script>
+
+  </body>
+</html>
