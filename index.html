@@ -15,7 +15,11 @@
 
     <p>This page demonstrates the <a href="fontmetrics.js">fontmetrics.js</a> library,
     which updates the canvas2d ctx.measureText(string) function so that it returns not just
-    a string's width, but also its ascent, descent, leading and bounding box metrics.</p>
+    a string's width, but also its height, ascent, descent, leading and bounding box metrics.</p>
+    
+    <p>(For some reason this library does the right thing in Opera and Safari, but renders the
+    wrong thing in the main canvas. The "metrics" canvas, however, shows the text for metrics
+    computation rendered quite correctly, so I don't know what's going on ...)</p>
 
     <table style="width:600px; margin-right:"><tr><td>
       Canvas "cvs" (200×200):<br>
