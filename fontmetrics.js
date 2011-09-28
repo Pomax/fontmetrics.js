@@ -7,7 +7,6 @@
 (function(){
   var NAME = "FontMetrics Library"
   var VERSION = "1-2011.0927.1431";
-  var debug = true;
 
   // if there is no getComputedStyle, this library won't work.
   if(!document.defaultView.getComputedStyle) {
@@ -138,9 +137,6 @@
     leadDivHeight = leadDivHeight.replace("px","");
     if (leadDivHeight >= fontSize * 2) { metrics.leading = (leadDivHeight/2) | 0; }
     document.body.removeChild(leadDiv); 
-
-    // show the canvas and bounds if required
-    if(debug){show(canvas, ctx, 50, w, h, metrics);}
 
     return metrics;
   };
