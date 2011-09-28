@@ -29,3 +29,5 @@ as follows:
 }
 
 Note: all numbers represent screen pixels (not typographical points)
+
+See http://pomax.github.com/fontmetrics.js/ for a demonstration.
