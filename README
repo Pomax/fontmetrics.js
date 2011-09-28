@@ -9,4 +9,23 @@ Simply include on a page as:
 
   <script type="text/javascript" src="fontmetrics.js"></script>
 
-and measureText will return a much more complete object.
+and measureText will return a much more complete object, structured
+as follows:
+
+{
+  fontsize: <number>,
+  width: <number>,
+  height: <number>,
+  ascent: <number>,
+  descent: <number>,
+  leading: <number>,
+  bounds:
+  { 
+    minx: <number>,
+    miny: <number>,
+    maxx: <number>,
+    maxy: <number>
+  }
+}
+
+Note: all numbers represent screen pixels (not typographical points)
