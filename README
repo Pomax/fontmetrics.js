@@ -13,21 +13,23 @@ and measureText will return a much more complete object, structured
 as follows:
 
 {
-  fontsize: <number>,
-  width: <number>,
-  height: <number>,
-  ascent: <number>,
-  descent: <number>,
-  leading: <number>,
-  bounds:
+  fontsize: <number>, /* as set on the canvas/context */
+  width: <number>,    /* typesetting width of the text */
+  height: <number>,   /* typesetting height of the text */
+  ascent: <number>,   /* height above the baseline for this text */
+  descent: <number>,  /* depth below the baseline for this text */
+  leading: <number>,  /* the 'lead' (metal) spacing between the baselines of two lines */
+  bounds:             /* the bounding box for the rasterised text on a canvas */
   { 
-    minx: <number>,
-    miny: <number>,
-    maxx: <number>,
-    maxy: <number>
+    minx: <number>, /* can be negative */
+    miny: <number>, /* can be negative */
+    maxx: <number>, /* not necessarily the same as width */
+    maxy: <number>  /* not necessarily the same as height */
   }
 }
 
 Note: all numbers represent screen pixels (not typographical points)
 
 See http://pomax.github.com/fontmetrics.js/ for a demonstration.
+
+This library is covered by an MIT (Expat flavour) license.
