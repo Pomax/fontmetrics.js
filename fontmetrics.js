@@ -116,14 +116,6 @@
         var ctx = canvas.getContext("2d");
         ctx.font = fontSize + "px " + fontFamily;
 
-        // for text lead values, we meaure a multiline text container.
-        var leadDiv = document.createElement("div");
-        leadDiv.style.position = "absolute";
-        leadDiv.style.opacity = 0;
-        leadDiv.style.font = fontSize + "px " + fontFamily;
-        leadDiv.innerHTML = textstring + "<br/>" + textstring;
-        document.body.appendChild(leadDiv);
-
         var w = canvas.width,
             h = canvas.height,
             baseline = h/2;
