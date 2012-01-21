@@ -5,6 +5,13 @@
   the text for which is included below.
 
 ** -----------------------------------------------------------------------------
+  
+  CHANGELOG:
+
+    2012-01-21 - Whitespace handling added by Joe Turner
+                 (https://github.com/oampo)
+
+** -----------------------------------------------------------------------------
 
   Copyright (C) 2011 by Mike "Pomax" Kamermans
 
@@ -28,7 +35,7 @@
 **/
 (function(){
   var NAME = "FontMetrics Library"
-  var VERSION = "1-2011.1005.1012";
+  var VERSION = "1-2012.0121.1300";
 
   // if there is no getComputedStyle, this library won't work.
   if(!document.defaultView.getComputedStyle) {
@@ -103,7 +110,7 @@
     if (leadDivHeight >= fontSize * 2) { metrics.leading = (leadDivHeight/2) | 0; }
     document.body.removeChild(leadDiv);
 
-
+    // if we're not dealing with white space, we can compute metrics
     if (!isSpace) {
         // Have characters, so measure the text
         var canvas = document.createElement("canvas");
@@ -165,6 +172,8 @@
                            maxy: descent-ascent };
         metrics.height = 1+(descent - ascent);
     }
+    
+    // if we ARE dealing with whitespace, most values will just be zero.
     else {
         // Only whitespace, so we can't measure the text
         metrics.ascent = 0;
